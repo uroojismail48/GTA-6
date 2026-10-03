@@ -4,7 +4,7 @@ import Navbar from "../(components)/Navbar"
 import Side from "../(components)/Side"
 function Main() {
   return (
-    <div className="h-screen w-full relative">
+    <div className="h-screen  w-full relative">
       <Image
       src={BG}
       alt="BG IMagE"

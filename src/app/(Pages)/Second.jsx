@@ -5,8 +5,8 @@ import pic3 from "../assets/p6.webp"
 import pic4 from "../assets/p3.webp"
 function Second() {
   return (
-       <div className="h-screen w-full p-14  flex flex-col">
-<div className="h-full w-full flex">
+       <div className="h-screen w-full p-14 bg-black max-md:p-0  flex flex-col">
+<div className="h-full w-full flex max-md:flex-col ">
   <div className="w-130  h-80 relative overflow-hidden rounded-4xl">
      <Image
       src={pic1}
@@ -28,8 +28,8 @@ function Second() {
       priority
 />
   </div>  
-  </div>   
-  <div className="h-full w-full flex justify-center items-center gap-20 mt-20 ">
+  </div>  
+  <div className="h-full w-full flex justify-center max-md:hidden  items-center md-max:gap-0 md-max:mt-0 gap-20 mt-20 ">
       <div className="w-100  h-80  rounded-4xl   relative overflow-hidden">
            <Image
       src={pic3}
@@ -50,6 +50,7 @@ function Second() {
   </div> 
   </div>
     </div>
+    
   )
 }
 
