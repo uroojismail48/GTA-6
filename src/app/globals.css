@@ -12,3 +12,7 @@
   color: #fff;
   line-height: 0.85;
 }
+::selection {
+  background-color: rgb(181, 72, 190); /* highlight ka background */
+  color: rgb(209, 12, 77);              /* selected text ka color */
+}

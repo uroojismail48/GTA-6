@@ -1,17 +1,20 @@
+"use client"
+
 import Image from "next/image";
 import pic1 from "../assets/p4.webp";
 import pic2 from "../assets/p2.webp";
 import pic3 from "../assets/p6.webp";
 import pic4 from "../assets/p3.webp";
+import { motion, useScroll,  useTransform } from "motion/react";
+import { useRef } from "react";
 
-// Reusable lime arrow (image cards ke corner ke liye)
 const ArrowCircle = () => (
-  <span className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-[#ff2e93] text-xl text-black transition hover:scale-110">
+
+<span className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-[#ff2e93] text-xl text-black transition hover:scale-110">
     →
   </span>
 );
 
-// Reusable lime pill button (Learn More / Discover More)
 const LimeBtn = ({ children }) => (
   <button className="flex w-fit cursor-pointer items-center gap-4 rounded-full bg-[#ff2e93] py-2 pl-6 pr-2 text-sm font-bold uppercase text-black transition hover:brightness-95">
     {children}
@@ -22,9 +25,22 @@ const LimeBtn = ({ children }) => (
 );
 
 function Second() {
+  const ref = useRef()   
+  const {scrollYProgress}    =useScroll(
+      {
+        target : ref,
+        offset : ["start end", "start center" ]
+      }
+     )
+     const opacity = useTransform(scrollYProgress , [0,1] , [0,1])
+
   return (
-    <div className="flex min-h-screen w-full flex-col gap-6 bg-black p-14 max-md:p-4">
-      <div className="grid gap-6 md:grid-cols-[1.3fr_1fr_1.3fr]">
+    <motion.div ref={ref}
+  
+    className="flex min-h-screen w-full flex-col gap-6 bg-black p-14 max-md:p-4">
+      <motion.div 
+      style={{opacity}}
+      className="grid gap-6 md:grid-cols-[1.3fr_1fr_1.3fr]">
         <div className="relative h-80 overflow-hidden rounded-4xl">
           <Image
             src={pic1}
@@ -72,11 +88,16 @@ function Second() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       <div className="grid gap-6 md:grid-cols-[1fr_2fr]">
         <div className="relative h-80 overflow-hidden rounded-4xl">
           <Image
+
+            initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
             src={pic3}
             alt="Vice City skyline"
             fill
@@ -114,7 +135,7 @@ function Second() {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
